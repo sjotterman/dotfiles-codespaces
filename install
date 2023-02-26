@@ -22,6 +22,8 @@ export SUDO_ASKPASS=/bin/true
 
 git clone https://github.com/sjotterman/dotfiles dotfiles
 
+git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+
 mv .bashrc .bashrc.old
 mv .zshrc .zshrc.old
 
@@ -44,6 +46,8 @@ sudo dpkg -i ripgrep_13.0.0_amd64.deb
 
 # install tea
 sh <(curl tea.xyz) --yes
+
+exec zsh -i
 # Install neovim with tea
 nvim~0.8.3 -v
 

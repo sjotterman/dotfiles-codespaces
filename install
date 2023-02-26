@@ -16,28 +16,36 @@ cd $HOME
 # Make passwordless sudo work
 export SUDO_ASKPASS=/bin/true
 
-# No thank you
-rm -rf .oh-my-bash
-rm -rf .oh-my-zsh
-rm .zshrc
 
 # A bit of a hack
-mv .gitconfig .gitconfig.private
+# mv .gitconfig .gitconfig.private
 
-git clone https://github.com/dcreager/dotfiles-base .dotfiles.base
-git clone https://github.com/dcreager/dotfiles-public -b codespaces --recurse-submodules .dotfiles.public
-$HOME/.dotfiles.base/bin/dotfiles.symlink install
+git clone https://github.com/sjotterman/dotfiles dotfiles
 
-# I'd like to use fish, please
-sudo apt-get install -y fish
-sudo chsh -s /usr/bin/fish $USER
+mv .bashrc .bashrc.old
+mv .zshrc .zshrc.old
+
+# install tea
+sh <(curl tea.xyz) --yes
+# Install stow
+STOW_VERSION=2.3.1
+curl -L http://mirror.us-midwest-1.nexcess.net/gnu/stow/stow-${STOW_VERSION}.tar.gz | tar xzC $HOME/
+cd $HOME/stow-${STOW_VERSION}
+./configure --prefix=$HOME/.local && make install
 
 # Install fzf
-FZF_VERSION=0.30.0
-curl -L https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz | tar xzC $HOME/bin
+FZF_VERSION=0.38.0
+curl -L https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz | tar xzC $HOME/.local/bin
 
-# Install neovim
-NVIM_VERSION=0.7.0
-sudo apt-get install -y libfuse2
-curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
-chmod a+x $HOME/bin/nvim
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+sudo dpkg -i ripgrep_13.0.0_amd64.deb
+
+
+cd $HOME/stow
+stow */
+
+# Install neovim with tea
+nvim~0.8.3 -v
+
+# Install fzf with tea
+fzf~0.38.0 --version

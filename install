@@ -29,9 +29,8 @@ mv .zshrc .zshrc.old
 
 # Install stow
 STOW_VERSION=2.3.1
-mkdir -p $HOME/stow
-curl -L http://mirror.us-midwest-1.nexcess.net/gnu/stow/stow-${STOW_VERSION}.tar.gz | tar xzC $HOME/stow
-cd $HOME/stow
+curl -L http://mirror.us-midwest-1.nexcess.net/gnu/stow/stow-${STOW_VERSION}.tar.gz | tar xzC $HOME/
+cd $HOME/stow-${STOW_VERSION}
 ./configure --prefix=$HOME/.local && make install
 
 

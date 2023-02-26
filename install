@@ -34,7 +34,7 @@ cd $HOME/stow-${STOW_VERSION}
 ./configure --prefix=$HOME/.local && make install
 
 
-cd $HOME/stow
+cd $HOME/dotfiles
 stow */
 
 # Install fzf

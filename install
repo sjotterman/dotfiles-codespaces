@@ -44,16 +44,16 @@ curl -L https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${F
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
 sudo dpkg -i ripgrep_13.0.0_amd64.deb
 
-zsh
 # install tea
 sudo install -m 755 <(curl --compressed -LSsf https://tea.xyz/$(uname)/$(uname -m)) /usr/local/bin/tea
+
+zsh
 
 # Install starship
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 exec zsh -i
 # Install neovim with tea
-nvim~0.8.3 -v
-
+tea nvim~0.8.3 -v
 # Install fzf with tea
-fzf~0.38.0 --version
+tea fzf~0.38.0 --version

@@ -46,7 +46,7 @@ sudo dpkg -i ripgrep_13.0.0_amd64.deb
 
 zsh
 # install tea
-$ sudo install -m 755 <(curl --compressed -LSsf https://tea.xyz/$(uname)/$(uname -m)) /usr/local/bin/tea
+sudo install -m 755 <(curl --compressed -LSsf https://tea.xyz/$(uname)/$(uname -m)) /usr/local/bin/tea
 
 # Install starship
 curl -sS https://starship.rs/install.sh | sh -s -- -y

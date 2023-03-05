@@ -33,6 +33,10 @@ curl -L http://mirror.us-midwest-1.nexcess.net/gnu/stow/stow-${STOW_VERSION}.tar
 cd $HOME/stow-${STOW_VERSION}
 ./configure --prefix=$HOME/.local && make install
 
+# Install neovim
+cd $HOME
+curl -L  https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb --output nvim.deb
+sudo apt install ./nvim.deb
 
 cd $HOME/dotfiles
 stow */
@@ -43,17 +47,3 @@ curl -L https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${F
 
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
 sudo dpkg -i ripgrep_13.0.0_amd64.deb
-
-# install tea
-sudo install -m 755 <(curl --compressed -LSsf https://tea.xyz/$(uname)/$(uname -m)) /usr/local/bin/tea
-
-zsh
-
-# Install starship
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-
-exec zsh -i
-# Install neovim with tea
-tea nvim~0.8.3 -v
-# Install fzf with tea
-tea fzf~0.38.0 --version
